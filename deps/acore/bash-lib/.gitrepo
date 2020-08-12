@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/azerothcore/bash-git-utils
 	branch = master
-	commit = e01d64d8e60aef54437cb04afbc79edd6abbf7d7
-	parent = 9f0cf30f4feeedb2fb1cdc42851f41a32a98e81f
+	commit = 157ec939c81cea7ee92dba40ddd2cc1d2563d248
+	parent = 1045b96eeb69fdb553933bf1f2f292de8ccd825f
 	method = merge
 	cmdver = 0.4.1

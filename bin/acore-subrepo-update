@@ -14,6 +14,8 @@ echo "> Pulling and update all subrepos"
 
 subrepoUpdate https://github.com/azerothcore/bash-lib  master deps/acore/bash-lib
 
+subrepoUpdate https://github.com/azerothcore/cmake-utils  master deps/acore/cmake-utils
+
 subrepoUpdate https://github.com/azerothcore/mysql-tools  master deps/acore/mysql-tools
 
 subrepoUpdate https://github.com/azerothcore/joiner  master deps/acore/joiner

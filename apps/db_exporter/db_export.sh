@@ -2,7 +2,7 @@
 
 ROOTPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../../" && pwd )"
 
-source $ROOTPATH"/apps/bash_shared/includes.sh"
+source "$ROOTPATH/apps/bash_shared/includes.sh"
 
 if [ -f "./config.sh"  ]; then
     source "./config.sh" # should overwrite previous
@@ -41,7 +41,7 @@ function export() {
     base_name=${!var_base_name}
 
 
-    bash $AC_PATH_DEPS"/acore/mysql-tools/mysql-tools" dump "" $base_name "" "$base_conf"
+    bash "$AC_PATH_DEPS/acore/mysql-tools/mysql-tools" "dump" "" "$base_name" "" "$base_conf"
 }
 
 for db in ${DATABASES[@]}

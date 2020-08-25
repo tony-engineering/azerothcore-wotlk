@@ -44,9 +44,9 @@ done
 
 J_PARAMS="$@"
 
-function Joiner:is_submodule() 
-{      
-    path=$1 
+function Joiner:is_submodule()
+{
+    path=$1
     (cd "$path" && cd "$(git rev-parse --show-toplevel 2>&1)/.."
     git rev-parse --is-inside-work-tree 2>&1) | grep -q true
 }
@@ -71,11 +71,11 @@ function Joiner:_help() {
 function Joiner:_searchFirstValiPath() {
     path=$1
     until $(cd -- "$path")
-    do    
+    do
         case   $path  in(*[!/]/*)
             path="${path%/*}"
-        ;;    
-        (*)   
+        ;;
+        (*)
             ! break
     esac
     done  2>/dev/null
@@ -89,8 +89,8 @@ function Joiner:_searchFirstValiPath() {
 function Joiner:add_repo() (
     set -e
     url=$1
-    name=${2:-""}   
-    branch=${3:-"master"} 
+    name=${2:-""}
+    branch=${3:-"master"}
     basedir=${4:-""}
 
     [[ -z $url ]] && hasReq=false || hasReq=true
@@ -126,7 +126,7 @@ function Joiner:add_repo() (
     fi
 
     # parent/child to avoid redundancy
-    [[ -f $path/install.sh && "$changed" = "yes" 
+    [[ -f $path/install.sh && "$changed" = "yes"
     && "${J_OPT[parent]}" != "$path" && "${J_OPT[child]}" != "$path" ]] && bash "$path/install.sh" --child="${J_OPT[parent]}" --parent="$path" $J_PARAMS
 
     return $TRUE
@@ -135,8 +135,8 @@ function Joiner:add_repo() (
 function Joiner:add_git_submodule() (
     set -e
     url=$1
-    name=${2:-""}   
-    branch=${3:-"master"} 
+    name=${2:-""}
+    branch=${3:-"master"}
     basedir=${4:-""}
 
     [[ -z $url ]] && hasReq=false || hasReq=true
@@ -176,7 +176,7 @@ function Joiner:add_git_submodule() (
     fi
 
     # parent/child to avoid redundancy
-    [[ -f $path/install.sh && "$changed" = "yes" 
+    [[ -f $path/install.sh && "$changed" = "yes"
     && "${J_OPT[parent]}" != "$path" && "${J_OPT[child]}" != "$path" ]] && bash "$path/install.sh" --child="${J_OPT[parent]}" --parent="$path" $J_PARAMS
 
     return $TRUE
@@ -221,7 +221,7 @@ function Joiner:add_file() (
         newpath="$dir${filename%%.*}"
 
         # parent/child to avoid redundancy
-        [[ -f $newpath/install.sh && "$changed" = "yes" 
+        [[ -f $newpath/install.sh && "$changed" = "yes"
         && "${J_OPT[parent]}" != "$newpath" && "${J_OPT[child]}" != "$newpath" ]] && bash "$newpath/install.sh" --child="${J_OPT[parent]}" --parent="$newpath" $J_PARAMS
     fi
 
@@ -235,8 +235,8 @@ function Joiner:add_file() (
 function Joiner:upd_repo() (
     set -e
     url=$1
-    name=${2:-""}   
-    branch=${3:-"master"} 
+    name=${2:-""}
+    branch=${3:-"master"}
     basedir=${4:-""}
 
     [[ -z $url ]] && hasReq=false || hasReq=true
@@ -259,7 +259,7 @@ function Joiner:upd_repo() (
     path="$J_PATH_MODULES/$basedir/$name"
 
     if [[ -z $url ]]; then
-        url=`git --git-dir="$path/.git" remote get-url origin` 
+        url=`git --git-dir="$path/.git" remote get-url origin`
     fi
 
     if [[ `Joiner:is_submodule "$path"` = true ]]; then
@@ -286,10 +286,10 @@ function Joiner:remove() (
     path="$J_PATH_MODULES/$basedir/$name"
 
     if [ -d "$path" ]; then
-        rm -r --interactive=never $path
-        [[ -f $path/uninstall.sh ]] && bash $path/uninstall.sh $J_PARAMS
+        rm -r --interactive=never "$path"
+        [[ -f $path/uninstall.sh ]] && bash "$path/uninstall.sh" $J_PARAMS
     elif [ -f "$path" ]; then
-        rm --interactive=never $path
+        rm --interactive=never "$path"
     else
         return $FALSE
     fi
@@ -418,7 +418,7 @@ function Joiner:menu() {
         # run option directly if specified in argument
         [ ! -z $1 ] && _switch $@
         [ ! -z $1 ] && exit 0
-        
+
         echo ""
         echo "==== JOINER MENU ===="
         select opt in "${options[@]}"
@@ -432,7 +432,7 @@ function Joiner:menu() {
 
 # Call menu only when run from command line.
 # if you wish to run joiner menu when sourced
-# you must call the relative function 
+# you must call the relative function
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     Joiner:menu $@
 else

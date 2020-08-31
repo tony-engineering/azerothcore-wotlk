@@ -9,7 +9,6 @@
 [![StackOverflow](http://img.shields.io/badge/stackoverflow-azerothcore-blue.svg)](https://stackoverflow.com/questions/tagged/azerothcore?sort=newest "Ask / browse questions here")
 [![Discord](https://img.shields.io/discord/217589275766685707.svg)](https://discord.gg/gkt4y2x "Our community hub on Discord")
 
-
 ## INTRODUCTION
 
 AzerothCore (AC) is an open source game-server application for World of Warcraft, currently supporting the 3.3.5a game version.

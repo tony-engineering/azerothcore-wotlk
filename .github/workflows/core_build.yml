@@ -81,6 +81,14 @@ jobs:
     name: windows-2019-MSVC16
     steps:
       - uses: actions/checkout@v2
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: build
+          key: BUILD:windows-2019-MSVC16:${{ github.ref }}:${{ github.sha }}
+          restore-keys: |
+            BUILD:windows-2019-MSVC16:${{ github.ref }}
+            BUILD:windows-2019-MSVC16
       - name: Configure OS
         run: choco install --no-progress openssl
       - name: Build

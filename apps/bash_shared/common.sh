@@ -1,5 +1,5 @@
-function registerHooks() { acore_event_register_hooks "$@"; }
-function runHooks() { acore_event_run_hooks "$@"; }
+function registerHooks() { acore_event_registerHooks "$@"; }
+function runHooks() { acore_event_runHooks "$@"; }
 
 source "$AC_PATH_CONF/dist/config.sh" # include dist to avoid missing conf variables
 

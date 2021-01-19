@@ -13,6 +13,7 @@
 #include <atomic>
 #include <map>
 #include <thread>
+#include <optional>
 
 #include "TerrainBuilder.h"
 #include "IntermediateValues.h"
@@ -64,7 +65,8 @@ namespace MMAP
     class MapBuilder
     {
     public:
-        MapBuilder(float maxWalkableAngle   = 60.f,
+            MapBuilder(std::optional<float> maxWalkableAngle,
+                std::optional<float> maxWalkableAngleNotSteep,
                    bool skipLiquid          = false,
                    bool skipContinents      = false,
                    bool skipJunkMaps        = true,
@@ -126,7 +128,9 @@ namespace MMAP
         bool m_skipJunkMaps;
         bool m_skipBattlegrounds;
 
-        float m_maxWalkableAngle;
+        std::optional<float> m_maxWalkableAngle;
+        std::optional<float> m_maxWalkableAngleNotSteep;
+
         bool m_bigBaseUnit;
         // percentageDone - variables to calculate percentage
         std::atomic<uint32> m_totalTiles;
